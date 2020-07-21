@@ -2,15 +2,22 @@ import React from 'react';
 
 import './Chatmessage.css';
 
-const ChatMessage = (props) => {
-    console.log(props)
-    return <div className='chat-message'>
-        <img className='user-avatar' src={props.message.user.avatar}/>
-        <div className='chat-text'>
-            <span className='user-name'>{props.message.user.username}</span>
-            <span className='chat-body'>{props.message.body}</span>
+const ChatMessage = ({ message, messageType }) => {
+    if (messageType === "sent") {
+      return (
+        <div className="chat-message-sent">
+          <span>{message.body}</span>
         </div>
-    </div>
-}
+      );
+    } else {
+        return (
+        <div className="chat-message">
+          <h4>{message.user.username}</h4>
+          <img src={message.user.avatar} alt={message.user.username} />
+          <span>{message.body}</span>
+        </div>
+      );
+    }
+  };
 
 export default ChatMessage;
